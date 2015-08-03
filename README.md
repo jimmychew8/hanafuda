@@ -5,10 +5,10 @@ Python 2.7
 
 #Usage: 
 1. Run the script from the terminal 
-  python hanafuda.py 
+2. Type python hanafuda.py 
 
-#Purpose: 
+Purpose: 
 To count the score for the Japanese card game Hanafuda. 
 
-#Current Problems: 
+Current Problems: 
 Bug in the scores_for_the_month_of function. 
