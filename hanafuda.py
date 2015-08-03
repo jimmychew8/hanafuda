@@ -1,32 +1,60 @@
-# keeps the score for the Japanese card game hanafuda 
-# ____________________________________________________________
+score_tally = []
+get_month = { 
 
-print "This is your hanafuda score calculator. Please answer these questions."
+	0 : "January", 
+	1 : "February",
+	2 : "March",
+	3 : "April",
+	4 : "May", 
+	5 : "June",
+	6 : "July",
+	7 : "August",
+	8 : "September",
+	9 : "October",
+	10 : "November",
+	11 : "December"
 
-# initial values 
-month = 0
-a = [(0,0,0)]
-sumOne = 0
+	}
 
 
-def data():
-    scoresMatch = 0
-    while scoresMatch == 0:
-        playerOne = int(input("What was player 1's score?: "))
-        playerTwo = int(input("What was player 2's score?: "))
-        playerThree = int(input("What was player 3's score?: "))
-        if playerOne + playerTwo + playerThree == 0: 
-            scoresMatch = 1
-            return (playerOne, playerTwo, playerThree)
-        else:
-            print("The scores do not match!")
+def get_player_score(player_number, month):
+	score = None 
+	while not isinstance(score, int): 
+		try: 
+			score = input("What was Player %r's score for %r? " % (player_number, get_month[month]))
+		except NameError, EOFError: 
+			pass
+	return score 
 
-while month < 12:
-    print "-------------------"
-    print("The month is:", month+1)
-    a.insert(month, data())
-    month = month + 1
-    sum_playerOne = sum(a[i][0] for i in range (0,month+1))
-    sum_playerTwo = sum(a[i][1] for i in range (0,month+1))
-    sum_playerThree = sum(a[i][2] for i in range (0,month+1))
-    print "The score is player 1:" , sum_playerOne, "player 2:" , sum_playerTwo, "player: 3" , sum_playerThree 
+
+def do_scores_add_up(player_one, player_two, player_three): 
+	if player_one + player_two + player_three == 0:
+		return True 
+
+def scores_for_the_month_of(month):
+	player_1 = get_player_score(1, month) 
+	player_2 = get_player_score(2, month) 
+	player_3 = get_player_score(3, month)
+	if do_scores_add_up(player_1, player_2, player_3):
+		print player_1, player_2, player_3 
+		return player_1, player_2, player_3 
+	else: 
+		print "-----SCORES DON'T ADD UP-----"
+		scores_for_the_month_of(month)
+
+
+def main(): 
+	for month in range(12): 
+		print "-----%r-----" % get_month[month]
+		score_tally.insert(month, scores_for_the_month_of(month)) 
+		print score_tally
+		
+		"""
+		player_1 = sum(score_tally[i][0] for i in range(month+1))
+		player_2 = sum(score_tally[i][1] for i in range(month+1))
+		player_3 = sum(score_tally[i][2] for i in range(month+1))
+		print "Total: Player 1: %r, Player 2: %r, Player 3: %r" % (player_1, player_2, player_3)
+		"""
+
+main()
+
