@@ -9,22 +9,19 @@ def get_player_score(player_number, month):
 
 
 def scores_for_the_month_of(month):
-	player_1 = get_player_score(1, month) 
-	player_2 = get_player_score(2, month) 
-	player_3 = get_player_score(3, month)
-	if  player_1 + player_2 + player_3 == 0:
-		print player_1, player_2, player_3 
-		return player_1, player_2, player_3 
-	else: 
+	while True: 
+		player_1 = get_player_score(1, month) 
+		player_2 = get_player_score(2, month) 
+		player_3 = get_player_score(3, month)
+		if  player_1 + player_2 + player_3 == 0:
+			return player_1, player_2, player_3 
 		print "-----SCORES DON'T ADD UP-----"
-		return scores_for_the_month_of(month)
 
 
 def main(): 
 	for month in range(12): 
 		print "-----%r-----" % get_month[month]
 		score_tally.insert(month, scores_for_the_month_of(month)) 
-		print score_tally
 		player_1 = sum(score_tally[i][0] for i in range(month+1))
 		player_2 = sum(score_tally[i][1] for i in range(month+1))
 		player_3 = sum(score_tally[i][2] for i in range(month+1))
@@ -32,7 +29,6 @@ def main():
 
 
 if __name__ == '__main__': 
-
 	score_tally = []
 	get_month = { 0 : "January", 
 				  1 : "February",
@@ -45,8 +41,11 @@ if __name__ == '__main__':
 				  8 : "September",
 				  9 : "October",
 				 10 : "November",
-				 11 : "December"}
-
+				 11 : "December" }
 	main()
+
+
+
+		
 
 
