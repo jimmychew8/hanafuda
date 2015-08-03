@@ -7,7 +7,6 @@ def get_player_score(player_number, month):
 			pass
 	return score 
 
-
 def scores_for_the_month_of(month):
 	while True: 
 		player_1 = get_player_score(1, month) 
@@ -17,7 +16,6 @@ def scores_for_the_month_of(month):
 			return player_1, player_2, player_3 
 		print "-----SCORES DON'T ADD UP-----"
 
-
 def main(): 
 	for month in range(12): 
 		print "-----%r-----" % get_month[month]
@@ -26,7 +24,6 @@ def main():
 		player_2 = sum(score_tally[i][1] for i in range(month+1))
 		player_3 = sum(score_tally[i][2] for i in range(month+1))
 		print "Total: Player 1: %r, Player 2: %r, Player 3: %r" % (player_1, player_2, player_3)
-
 
 if __name__ == '__main__': 
 	score_tally = []
