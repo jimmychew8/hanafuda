@@ -10,5 +10,4 @@ Python 2.7
 Purpose: 
 To count the score for the Japanese card game Hanafuda. 
 
-Current Problems: 
-Bug in the scores_for_the_month_of function. 
+
